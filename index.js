@@ -94,7 +94,7 @@ const questions = () => {
             questions();
           } else {
             employeeArr.push(answers);
-            console.log(employeeArr);
+            generateHTML(employeeArr);
           }
         });
         break;
@@ -105,7 +105,7 @@ const questions = () => {
             questions();
           } else {
             employeeArr.push(answers);
-            console.log(employeeArr);
+            generateHTML(employeeArr);
           }
         });
         break;
@@ -116,12 +116,10 @@ const questions = () => {
             questions();
           } else {
             employeeArr.push(answers);
-            console.log(employeeArr);
+            generateHTML(employeeArr);
           }
         });
         break;
     }
   });
 };
-
-questions().then(console.log(employeeArr));
