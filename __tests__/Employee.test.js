@@ -1,3 +1,4 @@
+const { expect } = require("@jest/globals");
 const Employee = require("../lib/Employee");
 
 describe("Testing for Employee Parent Class", () => {
@@ -6,6 +7,7 @@ describe("Testing for Employee Parent Class", () => {
     expect(test.name).toEqual(expect.any(String));
     expect(test.id).toEqual(expect.any(Number));
     expect(test.email).toEqual(expect.any(String));
+    expect(test.role).toEqual("Employee");
   });
 
   it("gets name of employee", () => {
