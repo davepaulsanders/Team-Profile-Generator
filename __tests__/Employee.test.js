@@ -36,7 +36,7 @@ describe("Testing for Employee Parent Class", () => {
     );
     expect(test.getEmail()).toEqual("davepaulsanders@gmail.com");
   });
-  it("gets tole of employee", () => {
+  it("gets role of employee", () => {
     const test = new Employee(
       "Dave",
       1,
