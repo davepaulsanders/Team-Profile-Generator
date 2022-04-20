@@ -124,4 +124,4 @@ const questions = () => {
   });
 };
 
-questions();
+questions().then(console.log(employeeArr));
