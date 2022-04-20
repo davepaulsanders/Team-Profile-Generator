@@ -9,24 +9,24 @@ describe("Testing for Manager Class", () => {
     expect(test.role).toEqual("Manager");
   });
 
-  it("gets name of employee", () => {
+  it("gets name of Manager", () => {
     const test = new Manager("Dave", 1, "davepaulsanders@gmail.com", 12);
     expect(test.getName()).toEqual("Dave");
   });
 
-  it("gets id of employee", () => {
+  it("gets id of Manager", () => {
     const test = new Manager("Dave", 1, "davepaulsanders@gmail.com", 12);
     expect(test.getId()).toEqual(1);
   });
-  it("gets email of employee", () => {
+  it("gets email of Manager", () => {
     const test = new Manager("Dave", 1, "davepaulsanders@gmail.com", 12);
     expect(test.getEmail()).toEqual("davepaulsanders@gmail.com");
   });
-  it("gets office number of employee", () => {
+  it("gets office number of Manager", () => {
     const test = new Manager("Dave", 1, "davepaulsanders@gmail.com", 12);
     expect(test.getOffice()).toEqual(12);
   });
-  it("gets role of employee", () => {
+  it("gets role of Manager", () => {
     const test = new Manager("Dave", 1, "davepaulsanders@gmail.com", 12);
     expect(test.getRole()).toEqual("Manager");
   });

@@ -14,7 +14,7 @@ describe("Testing for Engineer Class", () => {
     expect(test.role).toEqual("Engineer");
   });
 
-  it("gets name of employee", () => {
+  it("gets name of Engineer", () => {
     const test = new Engineer(
       "Dave",
       1,
@@ -24,7 +24,7 @@ describe("Testing for Engineer Class", () => {
     expect(test.getName()).toEqual("Dave");
   });
 
-  it("gets id of employee", () => {
+  it("gets id of Engineer", () => {
     const test = new Engineer(
       "Dave",
       1,
@@ -33,7 +33,7 @@ describe("Testing for Engineer Class", () => {
     );
     expect(test.getId()).toEqual(1);
   });
-  it("gets email of employee", () => {
+  it("gets email of Engineer", () => {
     const test = new Engineer(
       "Dave",
       1,
@@ -42,7 +42,7 @@ describe("Testing for Engineer Class", () => {
     );
     expect(test.getEmail()).toEqual("davepaulsanders@gmail.com");
   });
-  it("gets github of employee", () => {
+  it("gets github of Engineer", () => {
     const test = new Engineer(
       "Dave",
       1,
@@ -51,7 +51,7 @@ describe("Testing for Engineer Class", () => {
     );
     expect(test.getGithub()).toEqual("davepaul");
   });
-  it("gets role of employee", () => {
+  it("gets role of Engineer", () => {
     const test = new Engineer(
       "Dave",
       1,
