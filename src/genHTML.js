@@ -23,7 +23,7 @@ const generateHTML = (employeeArr) => {
     template =
       template +
       `
-        <div class="card m-3" style="width: 22rem>
+        <div class="card m-3" style="width: 22rem">
             <div class="bg-info p-3">
             <h2>${person.name}</h2>
                 <div class="d-flex">
@@ -34,9 +34,10 @@ const generateHTML = (employeeArr) => {
             <div class="py-4 px-3">
                 <ul class="list-group">
                     <li class="list-group-item">ID: ${person.id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${
-                      person.email
-                    }>${person.email}</a></li>
+                    <li class="list-group-item">
+                    Email: <a href="mailto:${person.email}">${
+        person.email
+      }</a></li>
                     ${listGroup(person)}
                 </ul>
             </div>

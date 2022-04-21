@@ -1,5 +1,10 @@
 const inquirer = require("inquirer");
 const generateHTML = require("./src/genHTML");
+const {
+  folderExist,
+  createFolder,
+  createFile,
+} = require("./src/file-creation");
 
 // importing classes
 const Engineer = require("./lib/Engineer");
@@ -7,10 +12,11 @@ const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
 
 // array to hold instances to be generated
-const employeeArr = [];
+let employeeArr = [];
 
 // create a manager
 const addManager = () => {
+  employeeArr = [];
   return inquirer.prompt([
     {
       name: "name",
@@ -99,7 +105,7 @@ const engineerRequest = (answers) => {
         employeeInfo();
       } else {
         employeeArr.push(new Intern(name, id, email, github));
-        generateHTML(employeeArr);
+        buildPage();
       }
     });
 };
@@ -131,7 +137,7 @@ const internRequest = (answers) => {
         employeeInfo();
       } else {
         employeeArr.push(new Intern(name, id, email, school));
-        generateHTML(employeeArr);
+        buildPage();
       }
     });
 };
@@ -143,6 +149,15 @@ addManager().then((answers) => {
   if (next === true) {
     employeeInfo();
   } else {
-    console.log(employeeArr);
+    return;
   }
 });
+const buildPage = () => {
+  const pageTemplate = generateHTML(employeeArr);
+  const folderCheck = folderExist();
+  if (folderCheck === true) {
+    createFile(pageTemplate);
+  } else {
+    createFolder().then(createFile(pageTemplate));
+  }
+};
