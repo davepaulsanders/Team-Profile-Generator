@@ -34,7 +34,9 @@ const generateHTML = (employeeArr) => {
             <div class="py-4 px-3">
                 <ul class="list-group">
                     <li class="list-group-item">ID: ${person.id}</li>
-                    <li class="list-group-item">Email: ${person.email}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${
+                      person.email
+                    }>${person.email}</a></li>
                     ${listGroup(person)}
                 </ul>
             </div>
