@@ -1,5 +1,8 @@
+// importing helper functions
 const iconSelector = require("./icon");
+const listGroup = require("./listgroup");
 
+//generating html template
 const generateHTML = (employeeArr) => {
   let template = `<!DOCTYPE html>
   <html lang="en">
@@ -32,7 +35,7 @@ const generateHTML = (employeeArr) => {
                 <ul class="list-group">
                     <li class="list-group-item">ID: ${person.id}</li>
                     <li class="list-group-item">Email: ${person.email}</li>
-                    <li class="list-group-item">Office Number: 2</li>
+                    ${listGroup(person)}
                 </ul>
             </div>
         </div>
@@ -43,7 +46,7 @@ const generateHTML = (employeeArr) => {
     `</div>
   </body>
   </html>`;
-  console.log(template);
+  return template;
 };
 
 module.exports = generateHTML;
