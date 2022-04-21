@@ -1,48 +1,36 @@
 const inquirer = require("inquirer");
+const generateHTML = require("./src/genHTML");
+const Engineer = require("./lib/Engineer");
+const Manager = require("./lib/Manager");
+const Intern = require("./lib/Intern");
 const employeeArr = [];
-const introductionRequest = () => {
+
+const addManager = () => {
   return inquirer.prompt([
     {
       name: "name",
-      message: "What is your name?",
+      message: "What is the team manager's name?",
     },
     {
       name: "id",
-      message: "What is your employee id?",
+      message: "What is their employee id?",
     },
     {
       name: "email",
-      message: "What is your email address?",
+      message: "What is their email address?",
     },
     {
-      type: "list",
-      name: "role",
-      message: "What is your role at this company?",
-      choices: ["Manager", "Engineer", "Intern"],
+      name: "office",
+      message: "What is your office number?",
+    },
+    {
+      type: "confirm",
+      name: "next",
+      message: "Do you want to add an employee?",
     },
   ]);
 };
 
-const managerRequest = (answers) => {
-  return inquirer
-    .prompt([
-      {
-        name: "office",
-        message: "What is your office number?",
-      },
-      {
-        type: "confirm",
-        name: "add",
-        message: "Do you want to add more employees?",
-      },
-    ])
-    .then((res) => {
-      for (key in res) {
-        answers[key] = res[key];
-      }
-      return answers;
-    });
-};
 const engineerRequest = (answers) => {
   return inquirer
     .prompt([
@@ -52,7 +40,7 @@ const engineerRequest = (answers) => {
       },
       {
         type: "confirm",
-        name: "add",
+        name: "next",
         message: "Do you want to add more employees?",
       },
     ])
@@ -60,7 +48,14 @@ const engineerRequest = (answers) => {
       for (key in res) {
         answers[key] = res[key];
       }
-      return answers;
+      const { name, id, email, github, next } = answers;
+      if (next === true) {
+        employeeArr.push(new Engineer(name, id, email, github));
+        employeeTypeAdd();
+      } else {
+        employeeArr.push(new Intern(name, id, email, github));
+        console.log(employeeArr);
+      }
     });
 };
 const internRequest = (answers) => {
@@ -72,7 +67,7 @@ const internRequest = (answers) => {
       },
       {
         type: "confirm",
-        name: "add",
+        name: "next",
         message: "Do you want to add more employees?",
       },
     ])
@@ -80,46 +75,56 @@ const internRequest = (answers) => {
       for (key in res) {
         answers[key] = res[key];
       }
-      return answers;
+      const { name, id, email, school, next } = answers;
+      if (next === true) {
+        employeeArr.push(new Intern(name, id, email, school));
+        employeeTypeAdd();
+      } else {
+        employeeArr.push(new Intern(name, id, email, school));
+        console.log(employeeArr);
+      }
     });
 };
 
-const questions = () => {
-  introductionRequest().then((answers) => {
-    switch (answers.role) {
-      case "Manager":
-        managerRequest(answers).then((answers) => {
-          if (answers.add === true) {
-            employeeArr.push(answers);
-            questions();
-          } else {
-            employeeArr.push(answers);
-            generateHTML(employeeArr);
-          }
-        });
-        break;
-      case "Engineer":
-        engineerRequest(answers).then((answers) => {
-          if (answers.add === true) {
-            employeeArr.push(answers);
-            questions();
-          } else {
-            employeeArr.push(answers);
-            generateHTML(employeeArr);
-          }
-        });
-        break;
-      case "Intern":
-        internRequest(answers).then((answers) => {
-          if (answers.add === true) {
-            employeeArr.push(answers);
-            questions();
-          } else {
-            employeeArr.push(answers);
-            generateHTML(employeeArr);
-          }
-        });
-        break;
-    }
-  });
+const employeeTypeAdd = () => {
+  return inquirer
+    .prompt([
+      {
+        name: "name",
+        message: "What is the employee's name?",
+      },
+      {
+        name: "id",
+        message: "What is the employee's id?",
+      },
+      {
+        name: "email",
+        message: "What is their email address?",
+      },
+      {
+        type: "list",
+        name: "add",
+        message: "What is their position?",
+        choices: ["Engineer", "Intern"],
+      },
+    ])
+    .then((res) => {
+      switch (res.add) {
+        case "Engineer":
+          engineerRequest(res);
+          break;
+        case "Intern":
+          internRequest(res);
+          break;
+      }
+    });
 };
+addManager().then((answers) => {
+  const { name, id, email, office, next } = answers;
+  employeeArr.push(new Manager(name, id, email, office));
+  if (next === true) {
+    employeeTypeAdd();
+  } else {
+    console.log(employeeArr);
+  }
+});
