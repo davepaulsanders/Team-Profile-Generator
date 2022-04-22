@@ -13,7 +13,6 @@ const Intern = require("./lib/Intern");
 
 // array to hold instances to be generated
 let employeeArr = [];
-
 // create a manager
 const addManager = () => {
   employeeArr = [];
@@ -21,23 +20,48 @@ const addManager = () => {
     {
       name: "name",
       message: "What is the team manager's name?",
+      validate: (name) => {
+        if (!name) {
+          console.log("Include the manager's name please!");
+          return false;
+        }
+      },
     },
     {
       name: "id",
       message: "What is their employee id?",
+      validate: (id) => {
+        if (!id) {
+          console.log("Include the manager's id please!");
+          return false;
+        }
+      },
     },
     {
       name: "email",
       message: "What is their email address?",
+      validate: (email) => {
+        if (!email) {
+          console.log("Include the manager's email please!");
+          return false;
+        }
+      },
     },
     {
       name: "office",
-      message: "What is your office number?",
+      message: "What is their office number?",
+      validate: (office) => {
+        if (!office) {
+          console.log("Include the manager's office number please!");
+          return false;
+        }
+      },
     },
     {
       type: "confirm",
       name: "next",
       message: "Do you want to add an employee?",
+      default: true,
     },
   ]);
 };
@@ -49,14 +73,32 @@ const employeeInfo = () => {
       {
         name: "name",
         message: "What is the employee's name?",
+        validate: (name) => {
+          if (!name) {
+            console.log("Include the employee's name please!");
+            return false;
+          }
+        },
       },
       {
         name: "id",
         message: "What is the employee's id?",
+        validate: (id) => {
+          if (!id) {
+            console.log("Include the employee's id please!");
+            return false;
+          }
+        },
       },
       {
         name: "email",
         message: "What is their email address?",
+        validate: (email) => {
+          if (!email) {
+            console.log("Include the employee's email please!");
+            return false;
+          }
+        },
       },
       {
         type: "list",
@@ -84,6 +126,12 @@ const engineerRequest = (answers) => {
       {
         name: "github",
         message: "What is your github username?",
+        validate: (github) => {
+          if (!github) {
+            console.log("Include the employee's github username please!");
+            return false;
+          }
+        },
       },
       {
         type: "confirm",
@@ -104,7 +152,8 @@ const engineerRequest = (answers) => {
         // call employeeInfo if the user wants to add a new employee
         employeeInfo();
       } else {
-        employeeArr.push(new Intern(name, id, email, github));
+        employeeArr.push(new Engineer(name, id, email, github));
+        // start page creation and build
         buildPage();
       }
     });
@@ -117,6 +166,12 @@ const internRequest = (answers) => {
       {
         name: "school",
         message: "What school do you attend?",
+        validate: (school) => {
+          if (!school) {
+            console.log("Include the manager's name please!");
+            return false;
+          }
+        },
       },
       {
         type: "confirm",
