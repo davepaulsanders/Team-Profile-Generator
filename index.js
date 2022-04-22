@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const generateHTML = require("./src/genHTML");
+// importing file building functions
 const {
   folderExist,
   createFolder,
@@ -13,6 +14,7 @@ const Intern = require("./lib/Intern");
 
 // array to hold instances to be generated
 let employeeArr = [];
+
 // create a manager
 const addManager = () => {
   employeeArr = [];
@@ -109,6 +111,7 @@ const employeeInfo = () => {
     ])
     .then((res) => {
       switch (res.add) {
+        // passing the responses to another prompt to cover more specific questions
         case "Engineer":
           engineerRequest(res);
           break;
@@ -207,9 +210,15 @@ addManager().then((answers) => {
     return;
   }
 });
+
+// this function creates index.html
 const buildPage = () => {
+  // generating page template
   const pageTemplate = generateHTML(employeeArr);
+  // checking if dist exists
   const folderCheck = folderExist();
+
+  // build file
   if (folderCheck === true) {
     createFile(pageTemplate);
   } else {
