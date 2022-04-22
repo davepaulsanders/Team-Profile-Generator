@@ -14,7 +14,6 @@ const Intern = require("./lib/Intern");
 
 // array to hold instances to be generated
 let employeeArr = [];
-
 // create a manager
 const addManager = () => {
   employeeArr = [];
@@ -26,6 +25,8 @@ const addManager = () => {
         if (!name) {
           console.log("Include the manager's name please!");
           return false;
+        } else {
+          return true;
         }
       },
     },
@@ -36,6 +37,8 @@ const addManager = () => {
         if (!id) {
           console.log("Include the manager's id please!");
           return false;
+        } else {
+          return true;
         }
       },
     },
@@ -46,6 +49,8 @@ const addManager = () => {
         if (!email) {
           console.log("Include the manager's email please!");
           return false;
+        } else {
+          return true;
         }
       },
     },
@@ -56,6 +61,8 @@ const addManager = () => {
         if (!office) {
           console.log("Include the manager's office number please!");
           return false;
+        } else {
+          return true;
         }
       },
     },
@@ -79,6 +86,8 @@ const employeeInfo = () => {
           if (!name) {
             console.log("Include the employee's name please!");
             return false;
+          } else {
+            return true;
           }
         },
       },
@@ -89,6 +98,8 @@ const employeeInfo = () => {
           if (!id) {
             console.log("Include the employee's id please!");
             return false;
+          } else {
+            return true;
           }
         },
       },
@@ -99,6 +110,8 @@ const employeeInfo = () => {
           if (!email) {
             console.log("Include the employee's email please!");
             return false;
+          } else {
+            return true;
           }
         },
       },
@@ -133,6 +146,8 @@ const engineerRequest = (answers) => {
           if (!github) {
             console.log("Include the employee's github username please!");
             return false;
+          } else {
+            return true;
           }
         },
       },
@@ -173,6 +188,8 @@ const internRequest = (answers) => {
           if (!school) {
             console.log("Include the manager's name please!");
             return false;
+          } else {
+            return true;
           }
         },
       },
